@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= user.username %> - Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1><i class="fas fa-user"></i> <%= user.username %></h1>
+      <a class="btn-logout" href="/freelancer/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </header>
+
+  <section class="profile-section container">
+    <div class="profile-info card">
+      <h2>Profile Details</h2>
+      <form action="/freelancer/profile/edit" method="POST" class="profile-form">
+        <input type="text" name="username" value="<%= user.username %>" placeholder="Full Name" required>
+        <input type="text" name="jobTitle" value="<%= user.jobTitle || '' %>" placeholder="Job Title">
+        <textarea name="bio" placeholder="Bio"><%= user.bio || '' %></textarea>
+        <input type="text" name="skills" value="<%= user.skills.join(', ') %>" placeholder="Skills (comma separated)">
+        <button type="submit"><i class="fas fa-save"></i> Update Profile</button>
+      </form>
+    </div>
+
+    <div class="portfolio-section card">
+      <h2>Portfolio</h2>
+      <a class="btn-add" href="/freelancer/portfolio/add"><i class="fas fa-plus"></i> Add Project</a>
+      <div class="portfolio-grid">
+        <% user.portfolio.forEach(project => { %>
+          <div class="project-card">
+            <img src="/images/project-placeholder.png" alt="Project Image">
+            <h3><%= project.projectName %></h3>
+            <p><%= project.description %></p>
+            <div class="project-links">
+              <a href="<%= project.demoUrl %>" target="_blank">Demo</a>
+              <a href="<%= project.repoUrl %>" target="_blank">Repo</a>
+            </div>
+            <div class="project-actions">
+              <a href="/freelancer/portfolio/edit/<%= project._id %>"><i class="fas fa-edit"></i> Edit</a>
+              <form action="/freelancer/portfolio/delete/<%= project._id %>" method="POST">
+                <button type="submit"><i class="fas fa-trash"></i> Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="dummy-projects-link card">
+      <a class="btn-view-projects" href="/freelancer/projects"><i class="fas fa-briefcase"></i> View Available Projects</a>
+    </div>
+  </section>
+</body>
+</html>

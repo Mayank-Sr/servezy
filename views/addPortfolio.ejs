@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Portfolio Project</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1><i class="fas fa-edit"></i> Edit Project</h1>
+      <a class="btn-back" href="/freelancer/profile"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+    </div>
+  </header>
+
+  <section class="container card">
+    <form action="/freelancer/portfolio/edit/<%= project._id %>" method="POST" class="portfolio-form">
+      <input type="text" name="projectName" value="<%= project.projectName %>" placeholder="Project Name" required>
+      <textarea name="description" placeholder="Project Description" required><%= project.description %></textarea>
+      <input type="url" name="demoUrl" value="<%= project.demoUrl %>" placeholder="Demo URL">
+      <input type="url" name="repoUrl" value="<%= project.repoUrl %>" placeholder="Repository URL">
+      <button type="submit"><i class="fas fa-save"></i> Save Changes</button>
+    </form>
+  </section>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Projects</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1><i class="fas fa-briefcase"></i> Available Projects</h1>
+      <a class="btn-back" href="/freelancer/profile"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+    </div>
+  </header>
+
+  <section class="container portfolio-grid">
+    <% projects.forEach(project => { %>
+      <div class="project-card">
+        <img src="/images/project-placeholder.png" alt="Project Image">
+        <h3><%= project.title %></h3>
+        <p><%= project.description %></p>
+        <div class="project-actions">
+          <form action="/freelancer/projects/apply/<%= project._id %>" method="POST">
+            <button type="submit" class="btn-apply"><i class="fas fa-paper-plane"></i> Apply</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </section>
+</body>
+</html>

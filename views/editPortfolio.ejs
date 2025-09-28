@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Portfolio Project</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Edit Project</h1>
+    <a class="btn-back" href="/freelancer/profile">Back to Profile</a>
+  </header>
+  <form action="/freelancer/portfolio/edit/<%= project._id %>" method="POST" class="portfolio-form">
+    <input type="text" name="projectName" value="<%= project.projectName %>" required>
+    <textarea name="description" required><%= project.description %></textarea>
+    <input type="url" name="demoUrl" value="<%= project.demoUrl %>">
+    <input type="url" name="repoUrl" value="<%= project.repoUrl %>">
+    <button type="submit">Update Project</button>
+  </form>
+</body>
+</html>
